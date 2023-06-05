@@ -10,16 +10,6 @@ app.use(express.json());
 app.use('/', router)
 
 
-
-
-
-
-
-
-
-
-
-
 // Porta
 const port = process.env.PORT || 3000
 
