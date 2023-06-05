@@ -15,14 +15,18 @@ const postTutors = ((req: Request, res: Response) => {
     try {
         const idT = tutor[tutor.length - 1].id + 1
         const{id, name, phone, email, date_of_birth, zip_code, pets} = req.body
+
         const people = {id, name, phone, email, date_of_birth, zip_code, pets}
         people.id = idT
+
         tutor.push(people)
         res.status(201).json(people)
     } catch (error) {
         const{id, name, phone, email, date_of_birth, zip_code, pets} = req.body
         const people = {id, name, phone, email, date_of_birth, zip_code, pets}
+
         people.id = 1
+        
         tutor.push(people)
         res.status(201).json(people)
     }
@@ -34,12 +38,15 @@ const postTutors = ((req: Request, res: Response) => {
 // ----------------------------------------- Post Pet --------------------------------------
 const postPets = ((req: Request, res: Response) => {
     try {
+
     const{id, name, species, carry, weight, date_of_birth} = req.body
     const pets = {id, name, species, carry, weight, date_of_birth}
     const idTutor = req.params.tutorId;
     const index = tutor.findIndex(i => i.id == Number(idTutor))
+
     const idPet = tutor[index].pets[tutor[index].pets.length -1].id + 1
     pets.id = idPet
+
         if(index > -1){
             if(tutor[index].pets){
                 tutor[index].pets.push(pets)
@@ -53,11 +60,14 @@ const postPets = ((req: Request, res: Response) => {
         res.status(400).send('Id tutor do not exist!') // Id tutor não correspondente
     }
     } catch (error) {
+
         const{id, name, species, carry, weight, date_of_birth} = req.body
         const pets = {id, name, species, carry, weight, date_of_birth}
         const idTutor = req.params.tutorId;
+
         const index = tutor.findIndex(i => i.id == Number(idTutor))
         pets.id = 1
+
             if(index > -1){                
                 if(tutor[index].pets){
                     tutor[index].pets.push(pets)
@@ -137,16 +147,18 @@ const putPets = ((req: Request, res: Response) => {
 
 const deleteTutors = ((req: Request, res: Response) => {
     const id = req.params.Id
-
     try {
         const indexTutor = tutor.findIndex(i => i.id == Number(id))
+
         if(indexTutor == -1){
             return res
             .status(404)
             .json({success: false, msg: `no tutor with id ${id}`}) // Id do Tutor não correspondente
         }
+
         tutor.splice(indexTutor, 1);
         return res.status(200).json({success: true})
+
     } catch (error) {
         res.send('Id')
     }
@@ -163,6 +175,7 @@ const deletePets = ((req: Request, res: Response) => {
     const indexTutor = tutor.findIndex(i => i.id == Number(idT))
     try {
         const indexPet = tutor[indexTutor].pets.findIndex(i => i.id == Number(id))
+
         if(indexTutor == -1){
             return res
             .status(404)
@@ -175,6 +188,7 @@ const deletePets = ((req: Request, res: Response) => {
 
         tutor[indexTutor].pets.splice(indexPet, 1)
         res.status(200).send({success: true})
+
     } catch (error) {
         res.send(error)
     }

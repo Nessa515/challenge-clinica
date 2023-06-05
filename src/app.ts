@@ -6,7 +6,7 @@ import {router} from './routes/tutors'
 // middleware
 app.use(express.json());
 
-
+// Route
 app.use('/', router)
 
 
