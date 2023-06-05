@@ -15,7 +15,7 @@ Para realizar a execução do projeto, basta executar o comando "npm run dev" no
 Clone o projeto
 
 ```bash
-  git clone https://link-para-o-projeto
+  git clone https://github.com/Nessa515/challenge-clinica.git
 ```
 
 Entre no diretório do projeto
